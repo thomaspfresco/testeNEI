@@ -35,8 +35,8 @@ function setup() {
     time = interval;
     intAux = interval;
 
-    r1 = 0;
-    r2 = 1;
+    r1 = int(random(7));
+    r2 = r1;
 }
 
 function draw() {
