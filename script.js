@@ -22,11 +22,15 @@ function setup() {
     createCanvas(windowWidth * 2, windowWidth * 2);
     font = loadFont('fonts/Satoshi-Bold.otf');
     textFont(font);
-
-    strokeRatio = displayHeight * displayWidth / 275000;
     
-    if (displayHeight<displayWidth) textSize(displayHeight * displayWidth / 50000);
-    else textSize(displayHeight * displayWidth / 10000);
+    if (displayHeight<displayWidth) {
+        textSize(displayHeight * displayWidth / 50000);
+        strokeRatio = displayHeight * displayWidth / 300000;
+    }
+    else {
+        textSize(displayHeight * displayWidth / 7500);
+        strokeRatio = displayHeight * displayWidth / 50000;
+    }
 
     time = interval;
     intAux = interval;
@@ -75,22 +79,6 @@ function draw() {
 
         fill(textColors[r2][0], textColors[r2][1], textColors[r2][2], 255 - opa);
         text('WEBSITE EM\nDESENVOLVIMENTO', windowWidth - margin - strokeRatio - margin / 3, margin + margin / 3);
-
-        /*
-                textAlign(LEFT, TOP);
-        fill(textColors[r1][0], textColors[r1][1], textColors[r1][2], opa);
-        text('NÚCLEO\nESTUDANTES\nINFORMÁTICA', margin + strokeRatio + margin / 2, windowHeight - margin - strokeRatio - windowHeight * 5.6 / margin);
-
-        fill(textColors[r2][0], textColors[r2][1], textColors[r2][2], 255 - opa);
-        text('NÚCLEO\nESTUDANTES\nINFORMÁTICA', margin + strokeRatio + margin / 2, windowHeight - margin - strokeRatio - windowHeight * 5.6 / margin);
-
-        textAlign(RIGHT, TOP);
-        fill(textColors[r1][0], textColors[r1][1], textColors[r1][2], opa);
-        text('WEBSITE EM\nDESENVOLVIMENTO', windowWidth - margin - strokeRatio - margin / 2, margin + margin / 2);
-
-        fill(textColors[r2][0], textColors[r2][1], textColors[r2][2], 255 - opa);
-        text('WEBSITE EM\nDESENVOLVIMENTO', windowWidth - margin - strokeRatio - margin / 2, margin + margin / 2);
-        */
     }
 
     if (opa < 255) opa = opa + increment;
@@ -124,24 +112,4 @@ function changeColor() {
     time = instant + intAux;
     r2 = r1;
     while(r1==r2) r1 = int(random(7));
-}
-
-function textHeight(text, maxWidth) {
-    var words = text.split(' ');
-    var line = '';
-    var h = this._textLeading;
-
-    for (var i = 0; i < words.length; i++) {
-        var testLine = line + words[i] + ' ';
-        var testWidth = drawingContext.measureText(testLine).width;
-
-        if (testWidth > maxWidth && i > 0) {
-            line = words[i] + ' ';
-            h += this._textLeading;
-        } else {
-            line = testLine;
-        }
-    }
-
-    return h;
 }
